@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+:root {
+  /* 
+    Royal Celebration Palette 
+    Primary: Royal Purple (Luxury, Creativity, Ambition)
+    Secondary: Golden Shine (Celebration, Quality)
+  */
+
+  --background: hsl(270 20% 99%);
+  /* Very light lavender white */
+  --foreground: hsl(270 50% 10%);
+  /* Deep plum/black */
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(270 50% 10%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(270 50% 10%);
+
+  /* Primary: Royal Purple */
+  --primary: hsl(265 85% 55%);
+  --primary-foreground: hsl(210 40% 98%);
+
+  /* Secondary: Bright Golden Yellow */
+  --secondary: hsl(48 96% 53%);
+  --secondary-foreground: hsl(270 50% 10%);
+
+  --muted: hsl(270 20% 96%);
+  --muted-foreground: hsl(270 10% 46%);
+
+  --accent: hsl(265 85% 96%);
+  /* Very light purple tint */
+  --accent-foreground: hsl(265 85% 55%);
+
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 40% 98%);
+
+  --border: hsl(270 20% 90%);
+  --input: hsl(270 20% 90%);
+  --ring: hsl(265 85% 55%);
+
+  --radius: 0.75rem;
+
+  --chart-1: hsl(265 85% 55%);
+  --chart-2: hsl(48 96% 53%);
+  --chart-3: hsl(197 37% 24%);
+  --chart-4: hsl(43 74% 66%);
+  --chart-5: hsl(27 87% 67%);
+}
+
+.dark {
+  --background: hsl(270 50% 10%);
+  --foreground: hsl(270 20% 99%);
+
+  --card: hsl(270 50% 10%);
+  --card-foreground: hsl(270 20% 99%);
+
+  --popover: hsl(270 50% 10%);
+  --popover-foreground: hsl(270 20% 99%);
+
+  --primary: hsl(265 85% 65%);
+  /* Slightly brighter for dark mode */
+  --primary-foreground: hsl(270 50% 10%);
+
+  --secondary: hsl(48 96% 53%);
+  --secondary-foreground: hsl(270 50% 10%);
+
+  --muted: hsl(270 30% 20%);
+  --muted-foreground: hsl(270 20% 70%);
+
+  --accent: hsl(270 30% 20%);
+  --accent-foreground: hsl(270 20% 99%);
+
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(210 40% 98%);
+
+  --border: hsl(270 30% 20%);
+  --input: hsl(270 30% 20%);
+  --ring: hsl(265 85% 65%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
