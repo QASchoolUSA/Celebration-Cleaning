@@ -1,20 +1,24 @@
 
 import Link from "next/link";
 import { Sparkles, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from "lucide-react";
+import { cities } from "@/data/seo-data";
 
 export function Footer() {
+    // Take exactly 5 top cities for the footer to avoid cluttering it
+    const topCities = cities.slice(0, 5);
+
     return (
         <footer className="bg-foreground text-background border-t border-white/10">
             <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                     {/* Brand & Description */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 lg:col-span-2">
                         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white">
                             <Sparkles className="h-6 w-6 text-secondary" />
                             <span>Celebration Cleaning</span>
                         </Link>
-                        <p className="text-sm text-gray-300 leading-relaxed">
-                            Bringing the joy of cleanliness to your home. Professional, reliable, and tailored to your needs. Let us celebrate your space!
+                        <p className="text-sm text-gray-300 leading-relaxed max-w-sm">
+                            Bringing the joy of cleanliness to your home. Professional, reliable, and tailored to your needs. Serving Florida's premier cities with exceptional care. Let us celebrate your space!
                         </p>
                         <div className="flex gap-4">
                             <Link href="#" className="text-gray-400 hover:text-secondary transition-colors">
@@ -51,22 +55,17 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Services */}
+                    {/* Locations We Serve */}
                     <div>
-                        <h3 className="font-semibold mb-4 text-white">Our Services</h3>
+                        <h3 className="font-semibold mb-4 text-white">Service Areas</h3>
                         <ul className="space-y-2 text-sm">
-                            <li>
-                                <Link href="/services/standard" className="text-gray-300 hover:text-secondary transition-colors">Standard Cleaning</Link>
-                            </li>
-                            <li>
-                                <Link href="/services/deep" className="text-gray-300 hover:text-secondary transition-colors">Deep Cleaning</Link>
-                            </li>
-                            <li>
-                                <Link href="/services/move-in-out" className="text-gray-300 hover:text-secondary transition-colors">Move-In/Out</Link>
-                            </li>
-                            <li>
-                                <Link href="/services/commercial" className="text-gray-300 hover:text-secondary transition-colors">Commercial Cleaning</Link>
-                            </li>
+                            {topCities.map(city => (
+                                <li key={city.slug}>
+                                    <Link href={`/cleaning-services/${city.slug}`} className="text-gray-300 hover:text-secondary transition-colors">
+                                        {city.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -84,7 +83,7 @@ export function Footer() {
                             </li>
                             <li className="flex items-start gap-3">
                                 <MapPin className="h-4 w-4 mt-1 text-secondary" />
-                                <span className="text-gray-300">123 Clean Street, Sparkle City, SC 12345</span>
+                                <span className="text-gray-300">123 Clean Street, Sparkle City, FL 12345</span>
                             </li>
                         </ul>
                     </div>
