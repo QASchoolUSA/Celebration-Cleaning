@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cities, services } from '@/data/seo-data';
 import { CTA } from '@/components/sections/CTA';
-import { Sparkles, CheckCircle } from 'lucide-react';
+import { Sparkles, CheckCircle, ShieldCheck, Award } from 'lucide-react';
 
 interface Props {
     params: Promise<{
@@ -100,81 +100,101 @@ export default async function CityServicePage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
 
-            {/* Hero Section */}
-            <section className="bg-primary/5 py-20 border-b">
-                <div className="container px-4 text-center max-w-4xl mx-auto">
-                    <div className="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-                        <Sparkles className="w-4 h-4" />
-                        Top-Rated {service.name} in {city.name}, FL
+            {/* Premium Hero Section */}
+            <section className="relative overflow-hidden bg-[#fafafa] pt-24 pb-20 isolate">
+                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] animate-pulse-slow"></div>
+                </div>
+
+                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
+                    <div className="inline-flex justify-center items-center rounded-full border border-secondary/20 bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary backdrop-blur-md shadow-sm mb-6 mx-auto">
+                        <Sparkles className="mr-2 h-4 w-4" />
+                        <span>Top-Rated {service.name} in {city.name}, FL</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight">
-                        Professional <span className="text-primary">{service.name}</span> in <span className="text-secondary">{city.name}</span>
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight text-slate-900 leading-tight">
+                        Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{service.name}</span> <br className="hidden md:block" /> in {city.name}
                     </h1>
-                    <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                    <p className="text-xl md:text-2xl text-slate-600 leading-relaxed mb-10 max-w-3xl mx-auto">
                         {service.description} We serve all neighborhoods in {city.name}, providing meticulous care for your space.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/contact" className="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition shadow-lg">
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="/contact" className="w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 transition shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1">
                             Get a Free Quote
                         </a>
-                        <a href="tel:16893882588" className="bg-white border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/5 transition">
+                        <a href="tel:16893882588" className="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-700 font-bold px-8 py-4 rounded-full text-lg hover:border-primary/50 hover:bg-primary/5 transition">
                             Call (689) 388-2588
                         </a>
                     </div>
                 </div>
             </section>
 
-            {/* Benefits Content */}
-            <section className="py-20 bg-white">
-                <div className="container px-4 max-w-5xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6 text-gray-900">Why Choose Us for {service.name} in {city.name}?</h2>
-                            <div className="space-y-4">
-                                <div className="flex gap-4 items-start">
-                                    <CheckCircle className="w-6 h-6 text-secondary shrink-0 mt-1" />
+            {/* Premium Benefits and Form Section */}
+            <section className="py-24 bg-white relative">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+                <div className="container relative z-10 px-4 max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-5 gap-16 items-start">
+                        {/* Benefits Content (Left - takes 3 cols) */}
+                        <div className="lg:col-span-3">
+                            <h2 className="text-4xl font-extrabold mb-12 text-slate-900 leading-tight">Why Choose Us for <span className="text-primary">{service.name}</span> in {city.name}?</h2>
+
+                            <div className="space-y-8">
+                                <div className="flex gap-5 group">
+                                    <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center shrink-0 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                                        <ShieldCheck className="w-6 h-6 text-secondary group-hover:text-white" />
+                                    </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg">Local {city.name} Experts</h3>
-                                        <p className="text-gray-600">Our cleaners know the {city.name} area thoroughly and arrive on-time, every time.</p>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Local {city.name} Experts</h3>
+                                        <p className="text-slate-600 text-lg leading-relaxed">Our cleaners know the {city.name} area thoroughly and arrive on-time, every time, understanding the specific needs of local homes.</p>
                                     </div>
                                 </div>
-                                <div className="flex gap-4 items-start">
-                                    <CheckCircle className="w-6 h-6 text-secondary shrink-0 mt-1" />
+
+                                <div className="flex gap-5 group">
+                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                                        <CheckCircle className="w-6 h-6 text-primary group-hover:text-white" />
+                                    </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg">Eco-Friendly Solutions</h3>
-                                        <p className="text-gray-600">We use safe, non-toxic products to protect your family and pets.</p>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Eco-Friendly Solutions</h3>
+                                        <p className="text-slate-600 text-lg leading-relaxed">We use safe, non-toxic products to protect your family and pets while delivering an immaculate clean.</p>
                                     </div>
                                 </div>
-                                <div className="flex gap-4 items-start">
-                                    <CheckCircle className="w-6 h-6 text-secondary shrink-0 mt-1" />
-                                    <div>
-                                        <h3 className="font-semibold text-lg">Satisfaction Guaranteed</h3>
-                                        <p className="text-gray-600">If you're not 100% satisfied with our {service.name.toLowerCase()}, we will re-clean for free.</p>
+
+                                <div className="flex gap-5 group">
+                                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                                        <Award className="w-6 h-6 text-emerald-500 group-hover:text-white" />
                                     </div>
-                                </div>
-                                <div className="flex gap-4 items-start">
-                                    <CheckCircle className="w-6 h-6 text-secondary shrink-0 mt-1" />
                                     <div>
-                                        <h3 className="font-semibold text-lg">Insured & Bonded</h3>
-                                        <p className="text-gray-600">Total peace of mind while we clean your property in {city.region}.</p>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Satisfaction Guaranteed</h3>
+                                        <p className="text-slate-600 text-lg leading-relaxed">If you're not 100% satisfied with our {service.name.toLowerCase()}, we will return and re-clean the area for free.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-primary/10 rounded-2xl p-8 relative overflow-hidden">
-                            <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"></div>
-                            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
-                            <h3 className="text-2xl font-bold mb-4 relative z-10 text-primary">Need {service.name} Fast?</h3>
-                            <p className="mb-6 text-gray-700 relative z-10">We often have same-day or next-day availability in {city.name}. Request your quote now to secure your spot.</p>
-                            <form className="space-y-4 relative z-10">
-                                <input type="text" placeholder="Name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" disabled />
-                                <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" disabled />
-                                <button type="button" className="w-full bg-secondary text-primary-foreground font-bold py-3 rounded-lg hover:bg-secondary/90 transition shadow-md">
-                                    Request Availability
-                                </button>
-                                <p className="text-xs text-center text-gray-500 mt-2">*This is a demonstration form</p>
-                            </form>
+                        {/* Form Glass Card (Right - takes 2 cols) */}
+                        <div className="lg:col-span-2 relative">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl opacity-50 rounded-full"></div>
+
+                            <div className="relative bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-8 shadow-2xl">
+                                <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-secondary to-orange-400 rounded-full blur-xl opacity-60"></div>
+                                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-tr from-primary to-blue-400 rounded-full blur-xl opacity-60"></div>
+
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl font-extrabold mb-2 text-slate-900">Need {service.name} Fast?</h3>
+                                    <p className="mb-8 text-slate-600 font-medium">We have availability in {city.name}. Request your quote now.</p>
+
+                                    <form className="space-y-4">
+                                        <input type="text" placeholder="Full Name" className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50" disabled />
+                                        <input type="tel" placeholder="Phone Number" className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50" disabled />
+                                        <input type="email" placeholder="Email Address" className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50" disabled />
+                                        <button type="button" className="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-secondary/90 transition shadow-lg shadow-secondary/25 mt-2 disabled:opacity-50" disabled>
+                                            Request Availability
+                                        </button>
+                                        <p className="text-xs text-center text-slate-400 mt-4">*This is a demonstration form</p>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

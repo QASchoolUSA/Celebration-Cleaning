@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { ServiceAreaMap } from "@/components/sections/ServiceAreaMap";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Services />
       <WhyChooseUs />
+      <ServiceAreaMap />
       <Testimonials />
       <CTA />
     </div>

@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cities, services } from '@/data/seo-data';
-import { Hero } from '@/components/sections/Hero';
-import { Services } from '@/components/sections/Services';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { CTA } from '@/components/sections/CTA';
+import { MapPin, ArrowRight } from "lucide-react";
+import Link from 'next/link';
 
 interface Props {
     params: Promise<{
@@ -86,39 +86,61 @@ export default async function CityPage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
             />
 
-            {/* 
-        Ideally, these components would accept props to inject the `city.name`.
-        For now we use the standard components. A future refactor could make them accept a `titleOverride`
-      */}
-            <section className="bg-primary pt-24 pb-12 text-center text-primary-foreground">
-                <div className="container px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-                        Professional Cleaning Services in {city.name}, FL
+            {/* Premium Hero Section */}
+            <section className="relative bg-[#fafafa] pt-24 pb-20 overflow-hidden isolate">
+                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] animate-pulse-slow"></div>
+                </div>
+
+                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+                    <div className="inline-flex justify-center items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-semibold text-primary backdrop-blur-md shadow-sm mb-6 mx-auto">
+                        <MapPin className="mr-2 h-4 w-4" />
+                        <span>Serving {city.region}</span>
+                    </div>
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight text-slate-900">
+                        Professional Cleaning in <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{city.name}, FL</span>
                     </h1>
-                    <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90 mb-8">
+                    <p className="text-xl md:text-2xl text-slate-600 leading-relaxed mb-8">
                         {city.description}
                     </p>
                 </div>
             </section>
 
-            <div className="py-12 bg-white">
-                <div className="container px-4">
-                    <h2 className="text-3xl font-bold text-center mb-8">Specialized Services in {city.name}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Services Grid */}
+            <section className="py-20 bg-white relative">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+                <div className="container relative z-10 mx-auto px-4 md:px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-slate-900 mb-4">Specialized Services in {city.name}</h2>
+                        <p className="text-slate-600 max-w-2xl mx-auto text-lg">Select a service to view specialized information and request a quote.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {services.map(service => (
-                            <a
-                                key={service.slug}
-                                href={`/cleaning-services/${city.slug}/${service.slug}`}
-                                className="block p-6 border rounded-lg shadow-sm hover:shadow-md transition bg-gray-50"
-                            >
-                                <h3 className="text-xl font-semibold mb-2 text-primary">{service.name}</h3>
-                                <p className="text-gray-600 text-sm line-clamp-2">{service.description}</p>
-                                <span className="mt-4 inline-block text-secondary font-medium">Learn More &rarr;</span>
-                            </a>
+                            <div key={service.slug} className="group relative">
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                                <Link
+                                    href={`/cleaning-services/${city.slug}/${service.slug}`}
+                                    className="relative block h-full p-8 bg-white border border-slate-100 rounded-3xl shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                                >
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-500"></div>
+
+                                    <h3 className="text-2xl font-bold mb-3 text-slate-900 group-hover:text-primary transition-colors">{service.name}</h3>
+                                    <p className="text-slate-600 mb-8 line-clamp-3">{service.description}</p>
+
+                                    <div className="flex justify-between items-center pt-4 border-t border-slate-100">
+                                        <span className="text-sm font-bold text-slate-900">View Details</span>
+                                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                                            <ArrowRight className="h-4 w-4" />
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         ))}
                     </div>
                 </div>
-            </div>
+            </section>
 
             <WhyChooseUs />
             <Testimonials />
