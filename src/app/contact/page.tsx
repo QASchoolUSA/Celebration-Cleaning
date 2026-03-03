@@ -37,33 +37,9 @@ export default function ContactPage() {
                                             <Phone className="h-5 w-5 text-primary" />
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold mb-1">Phone</h3>
+                                            <h3 className="font-semibold mb-1">Phone & Text</h3>
                                             <p className="text-muted-foreground">689-388-2588</p>
-                                            <p className="text-sm text-muted-foreground mt-1">Mon-Fri 8am-6pm</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-4">
-                                        <div className="h-10 w-10 shrink-0 rounded-full bg-muted flex items-center justify-center">
-                                            <Mail className="h-5 w-5 text-primary" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold mb-1">Email</h3>
-                                            <p className="text-muted-foreground">hello@celebrationcleaning.com</p>
-                                            <p className="text-sm text-muted-foreground mt-1">We reply within 24 hours</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-4">
-                                        <div className="h-10 w-10 shrink-0 rounded-full bg-muted flex items-center justify-center">
-                                            <MapPin className="h-5 w-5 text-primary" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold mb-1">Office</h3>
-                                            <p className="text-muted-foreground">
-                                                123 Clean Street<br />
-                                                Sparkle City, SC 12345
-                                            </p>
+                                            <p className="text-sm text-muted-foreground mt-1">Calls & SMS 24/7</p>
                                         </div>
                                     </div>
 
@@ -86,7 +62,7 @@ export default function ContactPage() {
                             {/* Real Interactive Map */}
                             <div className="h-[400px] rounded-2xl border-4 border-white shadow-xl overflow-hidden relative">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112344.60384167389!2d-81.6567119!3d28.3274643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd7eb5b2323e25%3A0x64e3288924f0c8a6!2sCelebration%2C%20FL!5e0!3m2!1sen!2sus!4v1705602324907!5m2!1sen!2sus"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540608.683050867!2d-85.45260195982173!3d27.66986968032707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c1766591562abf%3A0xf72e13d35bc74ed0!2sFlorida!5e0!3m2!1sen!2sus!4v1714574925763!5m2!1sen!2sus"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
