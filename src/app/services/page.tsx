@@ -7,6 +7,9 @@ import { Check } from "lucide-react";
 export const metadata: Metadata = {
     title: "Our Services | Celebration Cleaning",
     description: "Explore our wide range of professional cleaning services, including residential, commercial, deep cleaning, and move-in/move-out services.",
+    alternates: {
+        canonical: "https://www.celebrationcleaning.com/services",
+    },
 };
 
 const servicePackages = [

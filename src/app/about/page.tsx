@@ -5,6 +5,9 @@ import { CheckCircle2 } from "lucide-react";
 export const metadata: Metadata = {
     title: "About Us | Celebration Cleaning",
     description: "Learn more about Celebration Cleaning, our mission, values, and the team dedicated to making your home shine.",
+    alternates: {
+        canonical: "https://www.celebrationcleaning.com/about",
+    },
 };
 
 const values = [

@@ -10,6 +10,9 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
   title: "Celebration Cleaning | Home Cleaning Services",
   description: "Top-rated residential and commercial cleaning services. Eco-friendly, reliable, and thorough. Book your celebration of cleanliness today!",
+  alternates: {
+    canonical: "https://www.celebrationcleaning.com/",
+  },
 };
 
 export default function Home() {

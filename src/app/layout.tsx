@@ -12,6 +12,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.celebrationcleaning.com'),
   title: "Celebration Cleaning | Professional Cleaning Services",
   description: "Experience the joy of a spotless home with Celebration Cleaning. Professional, reliable, and thorough cleaning services.",
 };

@@ -33,6 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `Professional Cleaning Services in ${city.name}, FL | Celebration Cleaning`,
         description: city.description,
+        alternates: {
+            canonical: `https://www.celebrationcleaning.com/cleaning-services/${city.slug}`,
+        },
         openGraph: {
             title: `Professional Cleaning Services in ${city.name}, FL`,
             description: city.description,

@@ -6,6 +6,9 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 export const metadata: Metadata = {
     title: "Contact Us | Celebration Cleaning",
     description: "Get in touch with Celebration Cleaning for a free quote. We are ready to make your home shine.",
+    alternates: {
+        canonical: "https://www.celebrationcleaning.com/contact",
+    },
 };
 
 export default function ContactPage() {
@@ -80,11 +83,18 @@ export default function ContactPage() {
                                 </div>
                             </div>
 
-                            {/* Map Placeholder */}
-                            <div className="h-[300px] bg-muted rounded-2xl border flex items-center justify-center overflow-hidden relative">
-                                <div className="absolute inset-0 bg-slate-200 flex items-center justify-center text-slate-400 font-medium">
-                                    Interactive Map Integration
-                                </div>
+                            {/* Real Interactive Map */}
+                            <div className="h-[400px] rounded-2xl border-4 border-white shadow-xl overflow-hidden relative">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112344.60384167389!2d-81.6567119!3d28.3274643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd7eb5b2323e25%3A0x64e3288924f0c8a6!2sCelebration%2C%20FL!5e0!3m2!1sen!2sus!4v1705602324907!5m2!1sen!2sus"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen={true}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Celebration Cleaning Office Map"
+                                ></iframe>
                             </div>
                         </div>
 
