@@ -8,10 +8,14 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Celebration Cleaning | Home Cleaning Services",
-  description: "Top-rated residential and commercial cleaning services. Eco-friendly, reliable, and thorough. Book your celebration of cleanliness today!",
+  title: "Celebration Cleaning | Home & Commercial Cleaning in Florida",
+  description:
+    "Top-rated house, apartment, Airbnb, move-out, office, and restaurant cleaning across Miami, Orlando, Tampa, and 11 more Florida cities. Book today!",
   alternates: {
     canonical: "https://www.celebrationcleaning.com/",
+  },
+  openGraph: {
+    images: [{ url: "/images/hero-home.jpg" }],
   },
 };
 
