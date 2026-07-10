@@ -1,36 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { createSubmitOnce } from "@/lib/submit-once";
 
 export function ContactForm() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const submitOnceRef = useRef(createSubmitOnce());
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        setStatus("submitting");
-        setErrorMessage(null);
 
         const form = event.currentTarget;
         const formData = new FormData(form);
 
         try {
-            const response = await fetch("/api/bookings", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    customer_name: String(formData.get("name") ?? "").trim(),
-                    email: String(formData.get("email") ?? "").trim(),
-                    phone: String(formData.get("phone") ?? "").trim(),
-                    service_type: String(formData.get("service") ?? "").trim(),
-                    notes: String(formData.get("message") ?? "").trim(),
-                }),
+            const result = await submitOnceRef.current(async () => {
+                setStatus("submitting");
+                setErrorMessage(null);
+
+                const response = await fetch("/api/bookings", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        customer_name: String(formData.get("name") ?? "").trim(),
+                        email: String(formData.get("email") ?? "").trim(),
+                        phone: String(formData.get("phone") ?? "").trim(),
+                        service_type: String(formData.get("service") ?? "").trim(),
+                        notes: String(formData.get("message") ?? "").trim(),
+                    }),
+                });
+
+                if (!response.ok) {
+                    const data = (await response.json().catch(() => ({}))) as { error?: string };
+                    throw new Error(data.error ?? "Failed to send message");
+                }
             });
 
-            if (!response.ok) {
-                const data = (await response.json().catch(() => ({}))) as { error?: string };
-                throw new Error(data.error ?? "Failed to send message");
+            // Overlapping submit (double-click / Enter) — ignore; first request owns the outcome
+            if (!result.ran) {
+                return;
             }
 
             setStatus("success");
@@ -45,8 +55,14 @@ export function ContactForm() {
         }
     }
 
+    const isSubmitting = status === "submitting";
+
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 bg-background p-8 rounded-2xl border shadow-sm">
+        <form
+            onSubmit={handleSubmit}
+            aria-busy={isSubmitting}
+            className="space-y-6 bg-background p-8 rounded-2xl border shadow-sm"
+        >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -56,6 +72,7 @@ export function ContactForm() {
                         id="name"
                         name="name"
                         required
+                        disabled={isSubmitting}
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         placeholder="John Doe"
                     />
@@ -69,6 +86,7 @@ export function ContactForm() {
                         name="email"
                         type="email"
                         required
+                        disabled={isSubmitting}
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         placeholder="john@example.com"
                     />
@@ -85,6 +103,7 @@ export function ContactForm() {
                         name="phone"
                         type="tel"
                         required
+                        disabled={isSubmitting}
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         placeholder="689-388-2588"
                     />
@@ -96,6 +115,7 @@ export function ContactForm() {
                     <select
                         id="service"
                         name="service"
+                        disabled={isSubmitting}
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         defaultValue="Standard Cleaning"
                     >
@@ -116,13 +136,14 @@ export function ContactForm() {
                     id="message"
                     name="message"
                     required
+                    disabled={isSubmitting}
                     className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Tell us about your home and cleaning needs..."
                 />
             </div>
 
-            <Button type="submit" className="w-full" disabled={status === "submitting"}>
-                {status === "submitting" ? "Sending..." : "Send Message"}
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
 
             {status === "success" && (
