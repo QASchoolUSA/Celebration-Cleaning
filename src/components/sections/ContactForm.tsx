@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -6,16 +5,44 @@ import { Button } from "@/components/ui/button";
 
 export function ContactForm() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setStatus("submitting");
+        setErrorMessage(null);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const form = event.currentTarget;
+        const formData = new FormData(form);
 
-        setStatus("success");
-        // In a real app, we would send data to an API route here.
+        try {
+            const response = await fetch("/api/bookings", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    customer_name: String(formData.get("name") ?? "").trim(),
+                    email: String(formData.get("email") ?? "").trim(),
+                    phone: String(formData.get("phone") ?? "").trim(),
+                    service_type: String(formData.get("service") ?? "").trim(),
+                    notes: String(formData.get("message") ?? "").trim(),
+                }),
+            });
+
+            if (!response.ok) {
+                const data = (await response.json().catch(() => ({}))) as { error?: string };
+                throw new Error(data.error ?? "Failed to send message");
+            }
+
+            setStatus("success");
+            form.reset();
+        } catch (error) {
+            setStatus("error");
+            setErrorMessage(
+                error instanceof Error
+                    ? error.message
+                    : "Something went wrong. Please try again or call us.",
+            );
+        }
     }
 
     return (
@@ -27,6 +54,7 @@ export function ContactForm() {
                     </label>
                     <input
                         id="name"
+                        name="name"
                         required
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         placeholder="John Doe"
@@ -38,6 +66,7 @@ export function ContactForm() {
                     </label>
                     <input
                         id="email"
+                        name="email"
                         type="email"
                         required
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -53,6 +82,7 @@ export function ContactForm() {
                     </label>
                     <input
                         id="phone"
+                        name="phone"
                         type="tel"
                         required
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -65,6 +95,7 @@ export function ContactForm() {
                     </label>
                     <select
                         id="service"
+                        name="service"
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         defaultValue="Standard Cleaning"
                     >
@@ -83,6 +114,7 @@ export function ContactForm() {
                 </label>
                 <textarea
                     id="message"
+                    name="message"
                     required
                     className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Tell us about your home and cleaning needs..."
@@ -95,7 +127,13 @@ export function ContactForm() {
 
             {status === "success" && (
                 <p className="text-green-600 text-sm text-center font-medium bg-green-50 p-3 rounded-lg border border-green-200">
-                    Thank you! We've received your message and will be in touch shortly.
+                    Thank you! We&apos;ve received your message and will be in touch shortly.
+                </p>
+            )}
+
+            {status === "error" && (
+                <p className="text-red-600 text-sm text-center font-medium bg-red-50 p-3 rounded-lg border border-red-200">
+                    {errorMessage ?? "Something went wrong. Please try again or call us."}
                 </p>
             )}
         </form>
