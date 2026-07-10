@@ -11,6 +11,7 @@ export interface Service {
     slug: string;
     keywords: string[];
     description: string;
+    image: string;
     icon?: string;
 }
 
@@ -27,7 +28,7 @@ export const cities: City[] = [
         slug: "orlando",
         region: "Central Florida",
         county: "Orange",
-        description: "Top-rated cleaning services in Orlando. We keep your home or exact vacation rental sparkling clean year-round.",
+        description: "Top-rated cleaning services in Orlando. We keep your home or vacation rental sparkling clean year-round.",
     },
     {
         name: "Tampa",
@@ -112,7 +113,7 @@ export const cities: City[] = [
         region: "South Florida",
         county: "Palm Beach",
         description: "Premier residential cleaning in Wellington. Exceptional service tailored for equestrian estates and family homes alike.",
-    }
+    },
 ];
 
 export const services: Service[] = [
@@ -121,53 +122,72 @@ export const services: Service[] = [
         slug: "house-cleaning",
         keywords: ["residential cleaning", "maid service", "home cleaners", "professional house cleaning", "local house cleaners"],
         description: "Comprehensive house cleaning services tailored to your family's needs. We sanitize, dust, vacuum, and mop to create a healthy, joyful living space.",
+        image: "/images/house-cleaning.jpg",
     },
     {
         name: "Apartment Cleaning",
         slug: "apartment-cleaning",
         keywords: ["condo cleaning", "apartment maid service", "loft cleaning", "studio cleaning"],
         description: "Efficient and thorough apartment and condo cleaning. Maximize your space with our detailed cleaning that leaves every corner spotless.",
+        image: "/images/apartment-cleaning.jpg",
+    },
+    {
+        name: "Turnover Cleaning",
+        slug: "turnover-cleaning",
+        keywords: ["property turnover cleaning", "unit turnover cleaners", "rental turnover cleaning", "apartment turnover service"],
+        description: "Fast, checklist-driven turnover cleaning for rentals and managed properties. Ready for the next tenant or guest with photo-verified results.",
+        image: "/images/turnover-cleaning.jpg",
+    },
+    {
+        name: "Move-Out Cleaning",
+        slug: "move-out-cleaning",
+        keywords: ["move out cleaning", "end of tenancy clean", "empty house cleaning", "deposit recovery cleaning"],
+        description: "Stress-free move-out cleaning that helps protect deposits and impress landlords. Every cabinet, appliance, and baseboard gets attention.",
+        image: "/images/move-out-cleaning.jpg",
+    },
+    {
+        name: "Post-Construction Cleaning",
+        slug: "post-construction-cleaning",
+        keywords: ["construction cleanup", "builder dust cleaning", "renovation cleaning", "post remodel cleaning"],
+        description: "Specialized post-construction cleaning that removes fine drywall dust, debris, and residue so your newly finished space is truly livable.",
+        image: "/images/post-construction-cleaning.jpg",
     },
     {
         name: "Airbnb Cleaning",
         slug: "airbnb-cleaning",
         keywords: ["vacation rental turnover", "vrbo cleaning", "short term rental cleaner", "turnaround cleaning"],
         description: "Reliable Airbnb and vacation rental cleaning. Ensure 5-star reviews with our meticulous turnover services, complete with restocking and staging.",
+        image: "/images/airbnb-cleaning.jpg",
     },
     {
         name: "Commercial Cleaning",
         slug: "commercial-cleaning",
-        keywords: ["office cleaning", "business cleaners", "janitorial services", "workspace cleaning"],
-        description: "Professional commercial and office cleaning. Create a productive, hygienic environment for your employees and a welcoming space for your clients.",
+        keywords: ["business cleaners", "janitorial services", "workspace cleaning", "commercial janitorial Florida"],
+        description: "Professional commercial cleaning for retail and business spaces. Create a hygienic, welcoming environment for clients and staff.",
+        image: "/images/commercial-cleaning.jpg",
     },
     {
-        name: "Pressure Washing",
-        slug: "pressure-washing",
-        keywords: ["power washing", "driveway cleaning", "exterior house washing", "patio cleaning"],
-        description: "Transform your home's exterior with our professional pressure washing. We safely remove grime, mold, and dirt from driveways, patios, and siding.",
+        name: "Office Cleaning",
+        slug: "office-cleaning",
+        keywords: ["office cleaning", "office janitorial", "workspace sanitation", "after hours office cleaners"],
+        description: "Discreet after-hours office cleaning that keeps desks, restrooms, and shared spaces productive and professional every morning.",
+        image: "/images/office-cleaning.jpg",
     },
     {
-        name: "Carpet Cleaning",
-        slug: "carpet-cleaning",
-        keywords: ["rug cleaning", "stain removal", "steam cleaning", "deep carpet wash"],
-        description: "Revitalize your floors with our deep carpet cleaning services. We remove tough stains and allergens, extending the life of your carpets.",
+        name: "Restaurant & Cafe Cleaning",
+        slug: "restaurant-cafe-cleaning",
+        keywords: ["restaurant cleaning", "cafe cleaning", "kitchen deep clean", "dining room sanitation"],
+        description: "FOH and BOH restaurant and cafe cleaning aligned with busy service schedules—dining rooms, restrooms, and kitchen-adjacent zones.",
+        image: "/images/restaurant-cleaning.jpg",
     },
-    {
-        name: "Maintenance Cleaning",
-        slug: "maintenance-cleaning",
-        keywords: ["recurring cleaning", "weekly cleaning", "bi-weekly maid service", "regular house cleaning"],
-        description: "Keep your home consistently beautiful with our recurring maintenance cleaning. Choose weekly, bi-weekly, or monthly schedules to suit your lifestyle.",
-    },
-    {
-        name: "Deep Cleaning",
-        slug: "deep-cleaning",
-        keywords: ["spring cleaning", "heavy duty cleaning", "detailed cleaning", "one time deep clean"],
-        description: "Our intensive deep cleaning reaches the hidden dirt and grime. Perfect for spring cleaning, preparing for events, or an annual refresh.",
-    },
-    {
-        name: "Move-In/Move-Out Cleaning",
-        slug: "move-in-move-out",
-        keywords: ["move out cleaning", "move in cleaning", "end of tenancy clean", "empty house cleaning"],
-        description: "Stress-free moving with our comprehensive move-in and move-out cleaning. We ensure the property is immaculate for the next occupants or your arrival.",
-    }
+];
+
+/** Phase 1 core + sub-entities for schema about/mentions */
+export const coreEntities = [
+    { name: "Florida Professional Cleaning Services", type: "Service" as const },
+    { name: "Residential House Cleaning", type: "Service" as const },
+    { name: "Short-Term Rental Turnover Cleaning", type: "Service" as const },
+    { name: "Move-Out Cleaning", type: "Service" as const },
+    { name: "Commercial Office Cleaning", type: "Service" as const },
+    { name: "Florida Metro Service Areas", type: "Place" as const },
 ];

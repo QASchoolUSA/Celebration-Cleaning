@@ -30,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "monthly",
             priority: 0.5,
         },
+        {
+            url: `${baseUrl}/guides/airbnb-turnover-checklist-florida`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.85,
+        },
     ];
 
     const cityRoutes: MetadataRoute.Sitemap = cities.map((city) => ({

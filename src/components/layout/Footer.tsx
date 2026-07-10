@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import { Sparkles, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from "lucide-react";
+import { Sparkles, Facebook, Instagram, Twitter, Phone } from "lucide-react";
 import { cities } from "@/data/seo-data";
 
 export function Footer() {
@@ -51,6 +51,9 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link href="/contact" className="text-gray-300 hover:text-secondary transition-colors">Contact</Link>
+                            </li>
+                            <li>
+                                <Link href="/guides/airbnb-turnover-checklist-florida" className="text-gray-300 hover:text-secondary transition-colors">Airbnb Checklist Guide</Link>
                             </li>
                         </ul>
                     </div>
