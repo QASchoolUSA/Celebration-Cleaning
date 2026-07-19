@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Top-rated house, apartment, Airbnb, move-out, office, and restaurant cleaning across Miami, Orlando, Tampa, and 11 more Florida cities. Book today!",
   alternates: {
-    canonical: "https://www.celebrationcleaning.com/",
+    canonical: "https://celebrationcleaning.com/",
   },
   openGraph: {
     images: [{ url: "/images/hero-home.jpg" }],

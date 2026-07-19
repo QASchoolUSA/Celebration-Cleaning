@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CTA } from "@/components/sections/CTA";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { cities } from "@/data/seo-data";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
-const SITE_URL = "https://www.celebrationcleaning.com";
+const SITE_URL = "https://celebrationcleaning.com";
 const PAGE_PATH = "/guides/airbnb-turnover-checklist-florida";
 
 export const metadata: Metadata = {
@@ -107,6 +108,7 @@ export default function AirbnbTurnoverGuidePage() {
 
     return (
         <div className="flex flex-col min-h-screen">
+            <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Airbnb Turnover Checklist", path: PAGE_PATH }]} />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

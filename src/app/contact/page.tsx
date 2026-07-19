@@ -1,19 +1,21 @@
 
 import { Metadata } from "next";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Contact Us | Celebration Cleaning",
     description: "Get in touch with Celebration Cleaning for a free quote. We are ready to make your home shine.",
     alternates: {
-        canonical: "https://www.celebrationcleaning.com/contact",
+        canonical: "https://celebrationcleaning.com/contact",
     },
 };
 
 export default function ContactPage() {
     return (
         <div className="flex flex-col min-h-screen">
+            <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]} />
             {/* Hero */}
             <section className="bg-primary text-primary-foreground py-16 md:py-24">
                 <div className="container mx-auto px-4 md:px-6 text-center space-y-6">

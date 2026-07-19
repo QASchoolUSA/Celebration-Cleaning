@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 import { cities, services } from "@/data/seo-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://www.celebrationcleaning.com";
+    const baseUrl = "https://celebrationcleaning.com";
 
     const staticRoutes: MetadataRoute.Sitemap = [
         {

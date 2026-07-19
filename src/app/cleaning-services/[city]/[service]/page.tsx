@@ -3,7 +3,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { cities, services } from "@/data/seo-data";
 import { CTA } from "@/components/sections/CTA";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Sparkles, CheckCircle, ShieldCheck, Award } from "lucide-react";
+
+const SITE_URL = "https://celebrationcleaning.com";
 
 interface Props {
     params: Promise<{
@@ -38,12 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = `Best ${service.name} in ${city.name}, FL`;
     const description = `Looking for professional ${service.name.toLowerCase()} in ${city.name}? Celebration Cleaning provides top-rated, reliable cleaning services in ${city.name}, FL. Book today!`;
+    const pageUrl = `${SITE_URL}/cleaning-services/${city.slug}/${service.slug}`;
 
     return {
         title,
         description,
+        robots: { index: false, follow: true },
         alternates: {
-            canonical: `https://www.celebrationcleaning.com/cleaning-services/${city.slug}/${service.slug}`,
+            canonical: pageUrl,
         },
         keywords: [
             ...service.keywords,
@@ -53,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title,
             description,
-            url: `https://www.celebrationcleaning.com/cleaning-services/${city.slug}/${service.slug}`,
+            url: pageUrl,
             siteName: "Celebration Cleaning",
             locale: "en_US",
             type: "website",
@@ -76,29 +82,27 @@ export default async function CityServicePage({ params }: Props) {
         "@type": "Service",
         serviceType: service.name,
         name: `${service.name} in ${city.name}, FL`,
-        image: `https://www.celebrationcleaning.com${service.image}`,
+        image: `${SITE_URL}${service.image}`,
         provider: {
             "@type": "ProfessionalService",
             name: "Celebration Cleaning",
-            image: "https://www.celebrationcleaning.com/images/hero-home.jpg",
+            image: `${SITE_URL}/images/hero-home.jpg`,
             telephone: "+16893882588",
+            description:
+                "Celebration Cleaning is a mobile, service-area business serving cities across Florida. We do not publish a public storefront address.",
             address: {
                 "@type": "PostalAddress",
                 addressLocality: city.name,
                 addressRegion: "FL",
                 addressCountry: "US",
             },
-            sameAs: [
-                "https://www.facebook.com/celebrationcleaning",
-                "https://www.instagram.com/celebrationcleaning",
-            ],
         },
         areaServed: {
             "@type": "City",
             name: city.name,
         },
         description: service.description,
-        url: `https://www.celebrationcleaning.com/cleaning-services/${city.slug}/${service.slug}`,
+        url: `${SITE_URL}/cleaning-services/${city.slug}/${service.slug}`,
         about: [
             { "@type": "Thing", name: "Florida Professional Cleaning Services" },
             { "@type": "Service", name: service.name },
@@ -114,6 +118,17 @@ export default async function CityServicePage({ params }: Props) {
 
     return (
         <div className="flex flex-col min-h-screen">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Home", path: "/" },
+                    { name: "Services", path: "/services" },
+                    { name: city.name, path: `/cleaning-services/${city.slug}` },
+                    {
+                        name: service.name,
+                        path: `/cleaning-services/${city.slug}/${service.slug}`,
+                    },
+                ]}
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -223,44 +238,16 @@ export default async function CityServicePage({ params }: Props) {
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl opacity-50 rounded-full" />
 
                             <div className="relative bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-8 shadow-2xl">
-                                <div className="relative z-10">
-                                    <h3 className="text-2xl font-extrabold mb-2 text-slate-900">
-                                        Need {service.name} Fast?
-                                    </h3>
-                                    <p className="mb-8 text-slate-600 font-medium">
-                                        We have availability in {city.name}. Request your quote now.
-                                    </p>
-
-                                    <form className="space-y-4">
-                                        <input
-                                            type="text"
-                                            placeholder="Full Name"
-                                            className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
-                                            disabled
-                                        />
-                                        <input
-                                            type="tel"
-                                            placeholder="Phone Number"
-                                            className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
-                                            disabled
-                                        />
-                                        <input
-                                            type="email"
-                                            placeholder="Email Address"
-                                            className="w-full px-5 py-4 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
-                                            disabled
-                                        />
-                                        <button
-                                            type="button"
-                                            className="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-secondary/90 transition shadow-lg shadow-secondary/25 mt-2 disabled:opacity-50"
-                                            disabled
-                                        >
-                                            Request Availability
-                                        </button>
-                                        <p className="text-xs text-center text-slate-400 mt-4">
-                                            *This is a demonstration form
+                                <div className="relative z-10 space-y-6">
+                                    <div>
+                                        <h3 className="text-2xl font-extrabold mb-2 text-slate-900">
+                                            Need {service.name} Fast?
+                                        </h3>
+                                        <p className="text-slate-600 font-medium">
+                                            We have availability in {city.name}. Request your quote now.
                                         </p>
-                                    </form>
+                                    </div>
+                                    <ContactForm />
                                 </div>
                             </div>
                         </div>

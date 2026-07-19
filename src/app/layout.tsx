@@ -13,7 +13,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.celebrationcleaning.com"),
+  metadataBase: new URL("https://celebrationcleaning.com"),
   title: {
     default: "Celebration Cleaning | Professional Cleaning Services in Florida",
     template: "%s | Celebration Cleaning",

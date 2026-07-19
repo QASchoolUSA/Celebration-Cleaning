@@ -1,6 +1,34 @@
 import { cities, services, coreEntities } from "@/data/seo-data";
 
-const SITE_URL = "https://www.celebrationcleaning.com";
+const SITE_URL = "https://celebrationcleaning.com";
+
+/** Service-area business: no public street address */
+const SERVICE_AREA_POLICY =
+    "Celebration Cleaning is a mobile, service-area business serving Miami, Orlando, Tampa, and cities across Florida. We do not publish a public storefront address.";
+
+export function BreadcrumbJsonLd({
+    items,
+}: {
+    items: { name: string; path: string }[];
+}) {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.name,
+            item: item.path.startsWith("http") ? item.path : `${SITE_URL}${item.path}`,
+        })),
+    };
+
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+    );
+}
 
 export function OrganizationJsonLd() {
     const schema = {
@@ -17,15 +45,7 @@ export function OrganizationJsonLd() {
                 },
                 image: `${SITE_URL}/images/hero-home.jpg`,
                 telephone: "+16893882588",
-                description:
-                    "Professional residential and commercial cleaning services across Florida metros including Miami, Orlando, Tampa, and more.",
-                sameAs: [
-                    "https://www.facebook.com/celebrationcleaning",
-                    "https://www.instagram.com/celebrationcleaning",
-                    "https://www.linkedin.com/company/celebrationcleaning",
-                    "https://www.yelp.com/biz/celebration-cleaning",
-                    "https://www.bbb.org/us/fl/celebration-cleaning",
-                ],
+                description: SERVICE_AREA_POLICY,
                 about: coreEntities.map((entity) => ({
                     "@type": entity.type === "Place" ? "Place" : "Thing",
                     name: entity.name,
@@ -56,14 +76,6 @@ export function OrganizationJsonLd() {
                     "Florida's premier cleaning company for homes, apartments, Airbnb turnovers, offices, and restaurants.",
                 publisher: { "@id": `${SITE_URL}/#organization` },
                 inLanguage: "en-US",
-                potentialAction: {
-                    "@type": "SearchAction",
-                    target: {
-                        "@type": "EntryPoint",
-                        urlTemplate: `${SITE_URL}/cleaning-services/{search_term_string}`,
-                    },
-                    "query-input": "required name=search_term_string",
-                },
             },
             {
                 "@type": "ProfessionalService",
@@ -73,6 +85,7 @@ export function OrganizationJsonLd() {
                 image: `${SITE_URL}/images/hero-home.jpg`,
                 telephone: "+16893882588",
                 priceRange: "$$",
+                description: SERVICE_AREA_POLICY,
                 address: {
                     "@type": "PostalAddress",
                     addressRegion: "FL",
@@ -86,12 +99,6 @@ export function OrganizationJsonLd() {
                         name: "Florida",
                     },
                 })),
-                sameAs: [
-                    "https://www.facebook.com/celebrationcleaning",
-                    "https://www.instagram.com/celebrationcleaning",
-                    "https://g.page/celebrationcleaning",
-                    "https://www.yelp.com/biz/celebration-cleaning",
-                ],
                 about: coreEntities.map((entity) => ({
                     "@type": entity.type === "Place" ? "Place" : "Service",
                     name: entity.name,

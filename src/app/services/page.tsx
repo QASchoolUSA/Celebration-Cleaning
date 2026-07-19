@@ -4,13 +4,14 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { services } from "@/data/seo-data";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
     title: "Our Services",
     description:
         "House, apartment, turnover, move-out, post-construction, Airbnb, commercial, office, and restaurant cleaning across Florida.",
     alternates: {
-        canonical: "https://www.celebrationcleaning.com/services",
+        canonical: "https://celebrationcleaning.com/services",
     },
 };
 
@@ -60,6 +61,7 @@ const servicePackages = [
 export default function ServicesPage() {
     return (
         <div className="flex flex-col min-h-screen">
+            <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]} />
             <section className="relative overflow-hidden py-20 md:py-28 text-white">
                 <Image
                     src="/images/house-cleaning.jpg"
