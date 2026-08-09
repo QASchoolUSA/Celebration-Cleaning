@@ -9,12 +9,22 @@ type BookingBody = {
   address?: string;
   preferred_date?: string;
   preferred_time?: string;
+  intent?: string;
   property?: {
     bedrooms?: number;
     bathrooms?: number;
     square_feet?: number;
     size_label?: string;
     home_type?: string;
+  };
+  quote?: {
+    estimate?: number;
+    estimate_low?: number;
+    estimate_high?: number;
+    currency?: string;
+    frequency?: string;
+    payment_terms?: string;
+    internal?: boolean;
   };
 };
 
@@ -36,6 +46,27 @@ function normalizeProperty(property: BookingBody["property"]) {
   };
 
   return Object.values(normalized).some((value) => value !== undefined)
+    ? normalized
+    : undefined;
+}
+
+function normalizeQuote(quote: BookingBody["quote"]) {
+  if (!quote) return undefined;
+
+  const normalized = {
+    estimate: positiveNumber(quote.estimate),
+    estimate_low: positiveNumber(quote.estimate_low),
+    estimate_high: positiveNumber(quote.estimate_high),
+    currency: quote.currency?.trim() || undefined,
+    frequency: quote.frequency?.trim() || undefined,
+    payment_terms: quote.payment_terms?.trim() || undefined,
+    // This site never shows the estimate, so it must stay out of customer email.
+    internal: quote.internal === true ? true : undefined,
+  };
+
+  return normalized.estimate !== undefined ||
+    normalized.estimate_low !== undefined ||
+    normalized.estimate_high !== undefined
     ? normalized
     : undefined;
 }
@@ -79,7 +110,12 @@ export async function POST(request: Request) {
         preferred_date: body.preferred_date?.trim() || undefined,
         preferred_time: body.preferred_time?.trim() || undefined,
         notes: body.notes?.trim() || undefined,
+        intent:
+          body.intent === "quote" || body.intent === "book"
+            ? body.intent
+            : undefined,
         property: normalizeProperty(body.property),
+        quote: normalizeQuote(body.quote),
       }),
     });
 

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { estimateQuote } from "@/lib/pricing";
 import { createSubmitOnce } from "@/lib/submit-once";
 import { cn } from "@/lib/utils";
 
@@ -100,6 +101,15 @@ export function ContactForm() {
                 setStatus("submitting");
                 setErrorMessage(null);
 
+                const serviceType = String(formData.get("service") ?? "").trim();
+                // Dashboard-only triage figure; never shown here or emailed out.
+                const estimate = estimateQuote({
+                    service: serviceType,
+                    bedrooms,
+                    bathrooms,
+                    sqftBand,
+                });
+
                 const response = await fetch("/api/bookings", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -107,13 +117,25 @@ export function ContactForm() {
                         customer_name: String(formData.get("name") ?? "").trim(),
                         email: String(formData.get("email") ?? "").trim(),
                         phone: String(formData.get("phone") ?? "").trim(),
-                        service_type: String(formData.get("service") ?? "").trim(),
+                        address: String(formData.get("address") ?? "").trim() || undefined,
+                        service_type: serviceType,
                         notes: String(formData.get("message") ?? "").trim(),
+                        // A contact form is an enquiry, not a confirmed job.
+                        intent: "quote",
                         property: {
                             bedrooms: bedrooms ?? undefined,
                             bathrooms: bathrooms ?? undefined,
                             size_label: sqftBand ?? undefined,
                         },
+                        quote: estimate
+                            ? {
+                                  estimate: estimate.mid,
+                                  estimate_low: estimate.low,
+                                  estimate_high: estimate.high,
+                                  currency: "USD",
+                                  internal: true,
+                              }
+                            : undefined,
                     }),
                 });
 
@@ -220,6 +242,22 @@ export function ContactForm() {
                 <p className="text-sm text-muted-foreground">
                     Tell us about the place — one tap each, and it helps us quote you faster.
                 </p>
+                <div className="space-y-2">
+                    <label htmlFor="address" className="text-sm font-medium leading-none">
+                        Service address
+                        <span className="ml-2 font-normal text-muted-foreground">
+                            Optional
+                        </span>
+                    </label>
+                    <input
+                        id="address"
+                        name="address"
+                        autoComplete="street-address"
+                        disabled={isSubmitting}
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="123 Celebration Ave, Celebration, FL"
+                    />
+                </div>
                 <PillGroup
                     label="Bedrooms"
                     options={BEDROOM_OPTIONS}
