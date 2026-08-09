@@ -9,7 +9,36 @@ type BookingBody = {
   address?: string;
   preferred_date?: string;
   preferred_time?: string;
+  property?: {
+    bedrooms?: number;
+    bathrooms?: number;
+    square_feet?: number;
+    size_label?: string;
+    home_type?: string;
+  };
 };
+
+function positiveNumber(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0
+    ? value
+    : undefined;
+}
+
+function normalizeProperty(property: BookingBody["property"]) {
+  if (!property) return undefined;
+
+  const normalized = {
+    bedrooms: positiveNumber(property.bedrooms),
+    bathrooms: positiveNumber(property.bathrooms),
+    square_feet: positiveNumber(property.square_feet),
+    size_label: property.size_label?.trim() || undefined,
+    home_type: property.home_type?.trim() || undefined,
+  };
+
+  return Object.values(normalized).some((value) => value !== undefined)
+    ? normalized
+    : undefined;
+}
 
 export async function POST(request: Request) {
   try {
@@ -50,6 +79,7 @@ export async function POST(request: Request) {
         preferred_date: body.preferred_date?.trim() || undefined,
         preferred_time: body.preferred_time?.trim() || undefined,
         notes: body.notes?.trim() || undefined,
+        property: normalizeProperty(body.property),
       }),
     });
 
