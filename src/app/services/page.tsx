@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { services } from "@/data/seo-data";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { fromPriceLabel, headlineFor, type PricingConfig } from "@/lib/pricing";
+import { getPricingConfig } from "@/lib/pricing-config";
 
 export const metadata: Metadata = {
     title: "Our Services",
@@ -15,11 +17,12 @@ export const metadata: Metadata = {
     },
 };
 
+/** Prices and the "most popular" flag come from Booking Broom; the copy lives here. */
 const servicePackages = [
     {
+        key: "standard-cleaning",
         title: "Standard Cleaning",
         description: "Perfect for maintaining a tidy home on a regular basis.",
-        price: "From $120",
         features: [
             "Dusting all surfaces",
             "Vacuuming and mopping floors",
@@ -30,9 +33,9 @@ const servicePackages = [
         cta: "Book Standard Clean",
     },
     {
+        key: "deep-cleaning",
         title: "Deep Cleaning",
         description: "A comprehensive clean to reach every nook and cranny.",
-        price: "From $250",
         features: [
             "All Standard Cleaning items",
             "Cleaning inside appliances (oven, fridge)",
@@ -41,12 +44,11 @@ const servicePackages = [
             "Detailed dusting of blinds/vents",
         ],
         cta: "Book Deep Clean",
-        popular: true,
     },
     {
+        key: "move-out-turnover",
         title: "Move-Out / Turnover",
         description: "Ensure the property is spotless for the next chapter.",
-        price: "From $300",
         features: [
             "Deep cleaning of all rooms",
             "Cleaning inside all cabinets/drawers",
@@ -58,7 +60,18 @@ const servicePackages = [
     },
 ];
 
-export default function ServicesPage() {
+function packagesWithPrices(config: PricingConfig) {
+    return servicePackages.map((pkg) => ({
+        ...pkg,
+        price: fromPriceLabel(pkg.key, config),
+        popular: headlineFor(pkg.key, config)?.popular ?? false,
+    }));
+}
+
+export default async function ServicesPage() {
+    const pricing = await getPricingConfig();
+    const packages = packagesWithPrices(pricing);
+
     return (
         <div className="flex flex-col min-h-screen">
             <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]} />
@@ -127,9 +140,9 @@ export default function ServicesPage() {
                         <h2 className="text-3xl font-bold tracking-tight">Popular Packages</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {servicePackages.map((pkg) => (
+                        {packages.map((pkg) => (
                             <div
-                                key={pkg.title}
+                                key={pkg.key}
                                 className={`relative flex flex-col p-8 rounded-2xl border ${pkg.popular ? "border-primary shadow-lg scale-[1.02]" : "border-border shadow-sm"} bg-background`}
                             >
                                 {pkg.popular && (
