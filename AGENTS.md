@@ -28,4 +28,4 @@ Without these, the contact form API returns 503.
 
 - `pnpm lint` currently reports pre-existing errors (mostly `react/no-unescaped-entities` and a few unused-var warnings) in the committed source. These are not environment problems — do not treat a non-zero lint exit as a setup failure, and do not "fix" them unless the task asks.
 - `pnpm build` generates ~149 static pages (14 cities × 9 services plus marketing pages) via `generateStaticParams`; a successful build takes several seconds.
-- The contact form (`src/components/sections/ContactForm.tsx`) posts to `/api/bookings`, which forwards to Booking Broom.
+- The quote/booking widget (`src/components/BookingWidget.tsx`) posts to `/api/bookings`, which forwards to Booking Broom. Clients can request a quote or book immediately; pay after the cleaning.

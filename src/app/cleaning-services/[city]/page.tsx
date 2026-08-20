@@ -6,6 +6,7 @@ import { cities, services } from "@/data/seo-data";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
+import ServiceBookingSection from "@/components/sections/ServiceBookingSection";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { MapPin, ArrowRight } from "lucide-react";
 
@@ -227,6 +228,7 @@ export default async function CityPage({ params }: Props) {
 
             <WhyChooseUs />
             <Testimonials />
+            <ServiceBookingSection />
             <CTA />
         </div>
     );

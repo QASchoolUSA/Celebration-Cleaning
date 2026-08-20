@@ -12,7 +12,7 @@ export function CTA() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
                     <Button asChild size="lg" variant="secondary" className="text-lg px-8 h-12 rounded-full font-bold">
-                        <Link href="/contact">Book Now</Link>
+                        <Link href="/#booking">Book Now</Link>
                     </Button>
                     <Button asChild size="lg" variant="outline" className="text-lg px-8 h-12 rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                         <Link href="/contact">Contact Us</Link>

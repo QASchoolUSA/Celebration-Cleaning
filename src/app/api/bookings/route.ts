@@ -22,9 +22,11 @@ type BookingBody = {
     estimate_low?: number;
     estimate_high?: number;
     currency?: string;
+    service_level?: string;
     frequency?: string;
     payment_terms?: string;
     internal?: boolean;
+    add_ons?: { label?: string; price?: number }[];
   };
 };
 
@@ -53,14 +55,27 @@ function normalizeProperty(property: BookingBody["property"]) {
 function normalizeQuote(quote: BookingBody["quote"]) {
   if (!quote) return undefined;
 
+  const addOns = Array.isArray(quote.add_ons)
+    ? quote.add_ons
+        .map((addOn) => {
+          const label = addOn.label?.trim();
+          if (!label) return null;
+          const price = positiveNumber(addOn.price);
+          return price === undefined ? { label } : { label, price };
+        })
+        .filter((addOn): addOn is { label: string; price?: number } => addOn !== null)
+        .slice(0, 25)
+    : undefined;
+
   const normalized = {
     estimate: positiveNumber(quote.estimate),
     estimate_low: positiveNumber(quote.estimate_low),
     estimate_high: positiveNumber(quote.estimate_high),
     currency: quote.currency?.trim() || undefined,
+    service_level: quote.service_level?.trim() || undefined,
     frequency: quote.frequency?.trim() || undefined,
     payment_terms: quote.payment_terms?.trim() || undefined,
-    // This site never shows the estimate, so it must stay out of customer email.
+    add_ons: addOns?.length ? addOns : undefined,
     internal: quote.internal === true ? true : undefined,
   };
 

@@ -45,7 +45,7 @@ export function Header() {
                                 689-388-2588
                             </a>
                             <Button asChild className="bg-primary hover:bg-primary/90 text-white hidden md:inline-flex shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 font-bold">
-                                <Link href="/contact" className="whitespace-nowrap flex items-center">Get a Quote</Link>
+                                <Link href="/#booking" className="whitespace-nowrap flex items-center">Get a Quote</Link>
                             </Button>
                         </div>
                     </nav>
@@ -86,7 +86,7 @@ export function Header() {
                                 689-388-2588
                             </a>
                             <Button asChild className="w-full">
-                                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Get a Quote</Link>
+                                <Link href="/#booking" onClick={() => setIsMobileMenuOpen(false)}>Get a Quote</Link>
                             </Button>
                         </nav>
                     </div>

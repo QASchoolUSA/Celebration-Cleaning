@@ -1,8 +1,8 @@
 
 import { Metadata } from "next";
-import { ContactForm } from "@/components/sections/ContactForm";
+import BookingForm from "@/components/BookingForm";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Contact Us | Celebration Cleaning",
@@ -19,9 +19,9 @@ export default function ContactPage() {
             {/* Hero */}
             <section className="bg-primary text-primary-foreground py-16 md:py-24">
                 <div className="container mx-auto px-4 md:px-6 text-center space-y-6">
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Get in Touch</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Get a Quote or Book</h1>
                     <p className="text-xl opacity-90 max-w-2xl mx-auto">
-                        We'd love to hear from you. Fill out the form below or give us a call to schedule your cleaning.
+                        See your instant estimate, then request a quote or book your cleaning. Pay after the job is done.
                     </p>
                 </div>
             </section>
@@ -77,10 +77,8 @@ export default function ContactPage() {
                         </div>
 
                         {/* Contact Form */}
-                        <div>
-                            <div className="bg-muted/10 p-1 rounded-3xl border shadow-sm">
-                                <ContactForm />
-                            </div>
+                        <div id="booking">
+                            <BookingForm />
                         </div>
                     </div>
                 </div>

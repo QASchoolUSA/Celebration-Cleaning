@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { cities, services } from "@/data/seo-data";
 import { CTA } from "@/components/sections/CTA";
-import { ContactForm } from "@/components/sections/ContactForm";
+import BookingForm from "@/components/BookingForm";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Sparkles, CheckCircle, ShieldCheck, Award } from "lucide-react";
 
@@ -160,7 +160,7 @@ export default async function CityServicePage({ params }: Props) {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <a
-                            href="/contact"
+                            href="/#booking"
                             className="w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 transition shadow-xl shadow-primary/25"
                         >
                             Get a Free Quote
@@ -244,10 +244,10 @@ export default async function CityServicePage({ params }: Props) {
                                             Need {service.name} Fast?
                                         </h3>
                                         <p className="text-slate-600 font-medium">
-                                            We have availability in {city.name}. Request your quote now.
+                                            We have availability in {city.name}. Get your instant quote and book now.
                                         </p>
                                     </div>
-                                    <ContactForm />
+                                    <BookingForm />
                                 </div>
                             </div>
                         </div>

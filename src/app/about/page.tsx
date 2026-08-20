@@ -203,7 +203,7 @@ export default function AboutPage() {
                     </div>
                     <div className="mt-12 flex justify-center">
                         <Link
-                            href="/contact"
+                            href="/#booking"
                             className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                         >
                             Get a free quote

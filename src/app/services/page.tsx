@@ -7,6 +7,7 @@ import { services } from "@/data/seo-data";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { fromPriceLabel, headlineFor, type PricingConfig } from "@/lib/pricing";
 import { getPricingConfig } from "@/lib/pricing-config";
+import ServiceBookingSection from "@/components/sections/ServiceBookingSection";
 
 export const metadata: Metadata = {
     title: "Our Services",
@@ -162,7 +163,7 @@ export default async function ServicesPage() {
                                     ))}
                                 </ul>
                                 <Button className="w-full" variant={pkg.popular ? "default" : "outline"} asChild>
-                                    <Link href="/contact">{pkg.cta}</Link>
+                                    <Link href="/#booking">{pkg.cta}</Link>
                                 </Button>
                             </div>
                         ))}
@@ -193,7 +194,7 @@ export default async function ServicesPage() {
                                 </li>
                             </ul>
                             <Button size="lg" asChild>
-                                <Link href="/contact">Request Commercial Quote</Link>
+                                <Link href="/#booking">Request Commercial Quote</Link>
                             </Button>
                         </div>
                         <div className="flex-1 relative h-[300px] w-full rounded-2xl overflow-hidden shadow-xl">
@@ -208,6 +209,7 @@ export default async function ServicesPage() {
                     </div>
                 </div>
             </section>
+            <ServiceBookingSection />
         </div>
     );
 }
