@@ -20,7 +20,7 @@ Copy `.env.example` to `.env.local` and set:
 |---|---|
 | `BOOKING_BROOM_URL` | Optional; defaults to `https://app.bookingbroom.com` (set only for local BB) |
 | `BOOKING_BROOM_API_KEY` | Per-site API key for slug `celebration` |
-| `BOOKING_BROOM_SITE_SLUG` | Optional; defaults to `celebration` |
+| `BOOKING_BROOM_SITE_SLUG` | Not needed; hardcoded to `celebration` |
 
 Without these, the contact form API returns 503.
 
