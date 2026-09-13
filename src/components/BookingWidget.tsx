@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import PropertyDetailsStep from "@/components/PropertyDetailsStep";
 import { Button } from "@/components/ui/button";
 import { createSubmitOnce } from "@/lib/submit-once";
+import { createSoftLeadTracker } from "@/lib/soft-lead";
 import {
   ADDON_KEYS,
   DEFAULT_PRICING_CONFIG,
@@ -65,6 +66,10 @@ export default function BookingWidget({
   config?: PricingConfig;
 }) {
   const submitOnce = useRef(createSubmitOnce());
+  const softLead = useRef<ReturnType<typeof createSoftLeadTracker> | null>(null);
+  if (!softLead.current) {
+    softLead.current = createSoftLeadTracker();
+  }
   const [serviceType, setServiceType] = useState<ServiceType>("residential");
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(2);
@@ -129,6 +134,7 @@ export default function BookingWidget({
       preferred_date: date || undefined,
       preferred_time: time || undefined,
       intent,
+      session_key: softLead.current?.sessionKey,
       property: {
         bedrooms: serviceType === "residential" ? bedrooms : undefined,
         bathrooms,
@@ -146,6 +152,39 @@ export default function BookingWidget({
       },
     };
   }
+
+  useEffect(() => {
+    const tracker = softLead.current;
+    return () => tracker?.dispose();
+  }, []);
+
+  useEffect(() => {
+    if (booked) return;
+    softLead.current?.schedule({
+      ...buildPayload("quote"),
+      last_step: STEPS[step] ?? String(step),
+    });
+    // Snapshot from latest render whenever contact-relevant fields change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    booked,
+    step,
+    name,
+    email,
+    phone,
+    address,
+    date,
+    time,
+    serviceType,
+    bedrooms,
+    bathrooms,
+    sqftBand,
+    effectiveLevel,
+    addOns,
+    quote.price,
+    quote.range.low,
+    quote.range.high,
+  ]);
 
   async function submitPayload(intent: "quote" | "book") {
     const errors = validateContact(name, email, phone, address);
