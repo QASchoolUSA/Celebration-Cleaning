@@ -314,7 +314,11 @@ export async function getBookingOutboxEnv(): Promise<OutboxEnv> {
   };
 
   try {
-    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    // Variable specifier so plain `next build` does not require the OpenNext package.
+    const cloudflareModule = "@opennextjs/cloudflare";
+    const { getCloudflareContext } = (await import(cloudflareModule)) as {
+      getCloudflareContext: () => { env: OutboxEnv };
+    };
     const { env } = getCloudflareContext();
     const cf = env as OutboxEnv;
     return {
