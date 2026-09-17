@@ -10,7 +10,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
   title: "Celebration Cleaning | Home & Commercial Cleaning in Florida",
   description:
-    "Top-rated house, apartment, Airbnb, move-out, office, and restaurant cleaning across Miami, Orlando, Tampa, and 11 more Florida cities. Book today!",
+    "House, apartment, Airbnb, move-out, office, and restaurant cleaning across Miami, Orlando, Tampa, and 11 more Florida cities. Get a quote and book online.",
   alternates: {
     canonical: "https://celebrationcleaning.com/",
   },

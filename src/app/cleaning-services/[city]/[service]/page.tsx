@@ -40,8 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: "Service Not Found" };
     }
 
-    const title = `Best ${service.name} in ${city.name}, FL`;
-    const description = `Looking for professional ${service.name.toLowerCase()} in ${city.name}? Celebration Cleaning provides top-rated, reliable cleaning services in ${city.name}, FL. Book today!`;
+    const title = `${service.name} in ${city.name}, FL`;
+    const description = `${service.name} in ${city.name}, FL—clear checklists, local crews, and online quotes from Celebration Cleaning. Book today.`;
     const pageUrl = `${SITE_URL}/cleaning-services/${city.slug}/${service.slug}`;
 
     return {
@@ -148,14 +148,14 @@ export default async function CityServicePage({ params }: Props) {
                     <div className="inline-flex justify-center items-center gap-2 text-sm font-semibold text-secondary mb-6">
                         <Sparkles className="h-4 w-4" />
                         <span>
-                            Top-Rated {service.name} in {city.name}, FL
+                            {service.name} in {city.name}, FL
                         </span>
                     </div>
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
-                        Professional {service.name} in {city.name}
+                        {service.name} in {city.name}
                     </h1>
                     <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-10 max-w-3xl mx-auto">
-                        {service.description} We serve all neighborhoods in {city.name}, providing meticulous care for your space.
+                        {service.description} We cover neighborhoods across {city.name}—share access notes when you book.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -182,7 +182,7 @@ export default async function CityServicePage({ params }: Props) {
                     <div className="grid lg:grid-cols-5 gap-16 items-start">
                         <div className="lg:col-span-3">
                             <h2 className="text-4xl font-extrabold mb-12 text-slate-900 leading-tight">
-                                Why Choose Us for <span className="text-primary">{service.name}</span> in {city.name}?
+                                What to expect for <span className="text-primary">{service.name}</span> in {city.name}
                             </h2>
 
                             <div className="space-y-8">
@@ -191,9 +191,9 @@ export default async function CityServicePage({ params }: Props) {
                                         <ShieldCheck className="w-6 h-6 text-secondary group-hover:text-white" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Local {city.name} Experts</h3>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Local to {city.name}</h3>
                                         <p className="text-slate-600 text-lg leading-relaxed">
-                                            Our cleaners know the {city.name} area thoroughly and arrive on-time, every time, understanding the specific needs of local homes and businesses.
+                                            We plan around how {city.name} homes and buildings actually work—gates, elevators, hard floors, humidity—and we stick to the arrival window we confirm.
                                         </p>
                                     </div>
                                 </div>
@@ -203,9 +203,9 @@ export default async function CityServicePage({ params }: Props) {
                                         <CheckCircle className="w-6 h-6 text-primary group-hover:text-white" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Eco-Friendly Solutions</h3>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Safer product options</h3>
                                         <p className="text-slate-600 text-lg leading-relaxed">
-                                            We use safe, non-toxic products to protect your family, guests, and pets while delivering an immaculate clean.
+                                            Tell us about kids, pets, or sensitive finishes and we&apos;ll use gentler products where they still get the job done.
                                         </p>
                                     </div>
                                 </div>
@@ -215,9 +215,9 @@ export default async function CityServicePage({ params }: Props) {
                                         <Award className="w-6 h-6 text-emerald-500 group-hover:text-white" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl text-slate-900 mb-2">Satisfaction Guaranteed</h3>
+                                        <h3 className="font-bold text-xl text-slate-900 mb-2">We&apos;ll fix misses</h3>
                                         <p className="text-slate-600 text-lg leading-relaxed">
-                                            If you&apos;re not 100% satisfied with our {service.name.toLowerCase()}, we will return and re-clean the area for free.
+                                            If a room from your {service.name.toLowerCase()} checklist was skipped, tell us within 24 hours and we&apos;ll come back to finish it.
                                         </p>
                                     </div>
                                 </div>

@@ -8,10 +8,10 @@ export function WhyChooseUs() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                            Why Choose Celebration Cleaning?
+                            Why book with us
                         </h2>
                         <p className="text-lg text-muted-foreground">
-                            We stand out because we care. Our commitment to excellence ensures that every clean is a celebration of your home.
+                            We clean the rooms you actually live in, show up when we say we will, and fix misses without the runaround.
                         </p>
 
                         <div className="space-y-6">
@@ -20,9 +20,9 @@ export function WhyChooseUs() {
                                     <UserCheck className="h-5 w-5 text-green-600" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg mb-1">Vetted Professionals</h3>
+                                    <h3 className="font-bold text-lg mb-1">Background-checked crews</h3>
                                     <p className="text-muted-foreground">
-                                        Our staff is thoroughly background-checked, trained, and insured for your peace of mind.
+                                        Cleaners are screened, trained on our checklists, and covered by insurance before they get keys or codes.
                                     </p>
                                 </div>
                             </div>
@@ -32,9 +32,9 @@ export function WhyChooseUs() {
                                     <ShieldCheck className="h-5 w-5 text-blue-600" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg mb-1">Satisfaction Guaranteed</h3>
+                                    <h3 className="font-bold text-lg mb-1">Miss something? We come back</h3>
                                     <p className="text-muted-foreground">
-                                        Not happy? Let us know within 24 hours and we&apos;ll re-clean appropriately for free.
+                                        Tell us within 24 hours and we&apos;ll return to re-clean the area—no lecture, no extra charge.
                                     </p>
                                 </div>
                             </div>
@@ -44,9 +44,9 @@ export function WhyChooseUs() {
                                     <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg mb-1">Eco-Friendly Options</h3>
+                                    <h3 className="font-bold text-lg mb-1">Greener options available</h3>
                                     <p className="text-muted-foreground">
-                                        We offer green cleaning solutions that are safe for your family, pets, and the environment.
+                                        Ask for gentler products when you have kids, pets, or finishes that do not like harsh cleaners.
                                     </p>
                                 </div>
                             </div>

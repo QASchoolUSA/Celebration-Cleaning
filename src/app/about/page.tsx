@@ -22,20 +22,20 @@ export const metadata: Metadata = {
 
 const values = [
     {
-        title: "Reliability",
-        description: "We show up on time, every time. You can count on us to be there when you expect us.",
+        title: "Show up when we say",
+        description: "Confirmed windows matter. We plan access and travel so we're not leaving you waiting with a gate code.",
     },
     {
-        title: "Excellence",
-        description: "We don't settle for 'good enough'. We strive for perfection in every corner we clean.",
+        title: "Finish the checklist",
+        description: "A light tidy and a deep clean are different jobs. We work to the scope you booked—room by room.",
     },
     {
-        title: "Trust",
-        description: "Your home is your sanctuary. We treat it with the utmost respect and care.",
+        title: "Treat your place like a worksite with keys",
+        description: "We leave shoes and supplies where you want them, lock up as instructed, and don't dig through drawers.",
     },
     {
-        title: "Eco-Friendly",
-        description: "We use safe, sustainable products that are effective without being harsh on your home or the planet.",
+        title: "Use products that fit the surface",
+        description: "Kids, pets, wood floors, stone—tell us what matters and we'll pick cleaners that won't wreck finishes.",
     },
 ];
 
@@ -111,23 +111,13 @@ export default function AboutPage() {
                             <h2 className="text-3xl font-bold tracking-tight text-primary">Our story</h2>
                             <div className="space-y-4 text-muted-foreground leading-relaxed">
                                 <p>
-                                    Celebration Cleaning began with a practical mission: give busy Florida
-                                    families and property managers their time back. We started as a local
-                                    operation focused on showing up when promised and finishing what was on
-                                    the checklist—then grew into a trusted name for homes, apartments,
-                                    Airbnb turnovers, offices, and restaurants across the state.
+                                    Celebration Cleaning started with a simple job: show up when promised and finish what was on the checklist for busy Florida households and property managers. We grew from there into homes, apartments, Airbnb turnovers, offices, and restaurants across the state.
                                 </p>
                                 <p>
-                                    We believe a clean space is the backdrop for everyday life and guest
-                                    experiences alike. That is why we separate service types instead of
-                                    forcing every property into one vague package. A weekly house clean,
-                                    a same-day turnover, and a post-construction detail each deserve their
-                                    own standard.
+                                    A weekly house clean, a same-day turnover, and a post-construction detail are different jobs. We keep the scopes separate instead of stuffing every property into one vague package.
                                 </p>
                                 <p>
-                                    Our team is made of dedicated cleaning professionals. We invest in
-                                    training and fair wages because consistent quality comes from people who
-                                    take pride in the work—not anonymous marketplace rotations.
+                                    Our crews are trained employees, not a rotating marketplace. Fair wages and clear checklists are how you get the same standard visit after visit.
                                 </p>
                             </div>
                         </div>
@@ -149,7 +139,7 @@ export default function AboutPage() {
                     <div className="max-w-3xl mb-12">
                         <h2 className="text-3xl font-bold tracking-tight">How we work</h2>
                         <p className="mt-4 text-muted-foreground">
-                            Experience is demonstrated in process—from first quote to finished checklist.
+                            From the first quote to the finished checklist—here&apos;s how a visit usually goes.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

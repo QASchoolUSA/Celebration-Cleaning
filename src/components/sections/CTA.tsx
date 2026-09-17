@@ -6,9 +6,9 @@ export function CTA() {
     return (
         <section className="py-20 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 md:px-6 text-center space-y-8">
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Ready for a Sparkling Home?</h2>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Ready to book your first clean?</h2>
                 <p className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
-                    Book your first cleaning today and get 20% off! Experience the difference professional care makes.
+                    First-time customers get 20% off. Get a quote online or call—we clean, you pay after the job.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
                     <Button asChild size="lg" variant="secondary" className="text-lg px-8 h-12 rounded-full font-bold">

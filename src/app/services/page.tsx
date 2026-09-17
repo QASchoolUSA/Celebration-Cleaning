@@ -23,7 +23,7 @@ const servicePackages = [
     {
         key: "standard-cleaning",
         title: "Standard Cleaning",
-        description: "Perfect for maintaining a tidy home on a regular basis.",
+        description: "Weekly or biweekly upkeep—dust, floors, kitchens, and baths without the deep-clean extras.",
         features: [
             "Dusting all surfaces",
             "Vacuuming and mopping floors",
@@ -36,7 +36,7 @@ const servicePackages = [
     {
         key: "deep-cleaning",
         title: "Deep Cleaning",
-        description: "A comprehensive clean to reach every nook and cranny.",
+        description: "Heavier detail work: appliances, baseboards, vents, and the spots a standard visit skips.",
         features: [
             "All Standard Cleaning items",
             "Cleaning inside appliances (oven, fridge)",
@@ -49,7 +49,7 @@ const servicePackages = [
     {
         key: "move-out-turnover",
         title: "Move-Out / Turnover",
-        description: "Ensure the property is spotless for the next chapter.",
+        description: "Empty-unit or guest-ready resets for move-outs, turnovers, and handoffs.",
         features: [
             "Deep cleaning of all rooms",
             "Cleaning inside all cabinets/drawers",
@@ -89,7 +89,7 @@ export default async function ServicesPage() {
                 <div className="container relative mx-auto px-4 md:px-6 text-center space-y-6">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Our Services</h1>
                     <p className="text-xl text-white/85 max-w-2xl mx-auto">
-                        Tailored cleaning solutions for homeowners, property managers, and Florida businesses.
+                        House cleans, turnovers, move-outs, offices, and restaurants—scoped clearly so you know what you&apos;re booking.
                     </p>
                 </div>
             </section>
@@ -97,9 +97,9 @@ export default async function ServicesPage() {
             <section className="py-20 bg-background">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-                        <h2 className="text-3xl font-bold tracking-tight">Full Service Menu</h2>
+                        <h2 className="text-3xl font-bold tracking-tight">What we clean</h2>
                         <p className="text-muted-foreground text-lg">
-                            Nine specialized cleaning lines—each with city pages across Florida.
+                            Nine service types, each with city pages across Florida.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

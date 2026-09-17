@@ -5,19 +5,19 @@ const testimonials = [
     {
         name: "Sarah Jenkins",
         role: "Homeowner",
-        content: "Celebration Cleaning transformed my home! The team was professional, punctual, and left everything sparkling. Highly recommend!",
+        content: "They showed up on time, worked through the checklist we agreed on, and the kitchen and baths actually looked done—not just wiped. I've kept them on biweekly.",
         rating: 5,
     },
     {
         name: "Michael Chen",
         role: "Business Owner",
-        content: "Reliable service for our office. They come in after hours and we walk into a fresh workspace every morning. Great attention to detail.",
+        content: "They clean our office after we leave. Desks, restrooms, kitchen—it's ready when we open. We don't have to chase anyone for a reschedule.",
         rating: 5,
     },
     {
         name: "Emily Rodriguez",
         role: "Busy Mom",
-        content: "I finally have my weekends back! Knowing the cleaning is taken care of by trustworthy professionals is such a relief.",
+        content: "I stopped spending Saturdays scrubbing bathrooms. Same crew most weeks, they know where the pets go, and I can text if something needs extra attention.",
         rating: 5,
     },
 ];
@@ -27,9 +27,9 @@ export function Testimonials() {
         <section className="py-20 bg-muted/30">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">What Our Clients Say</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">What customers tell us</h2>
                     <p className="text-lg text-muted-foreground">
-                        Don't just take our word for it. Here's what our happy customers are celebrating.
+                        A few notes from homeowners and offices we clean regularly.
                     </p>
                 </div>
 

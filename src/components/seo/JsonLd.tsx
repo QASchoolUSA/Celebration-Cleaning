@@ -73,7 +73,7 @@ export function OrganizationJsonLd() {
                 url: SITE_URL,
                 name: "Celebration Cleaning",
                 description:
-                    "Florida's premier cleaning company for homes, apartments, Airbnb turnovers, offices, and restaurants.",
+                    "House, apartment, Airbnb turnover, office, and restaurant cleaning across Miami, Orlando, Tampa, and cities throughout Florida.",
                 publisher: { "@id": `${SITE_URL}/#organization` },
                 inLanguage: "en-US",
             },

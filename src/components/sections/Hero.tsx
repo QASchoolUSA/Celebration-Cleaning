@@ -33,7 +33,7 @@ export async function Hero() {
                         </h1>
 
                         <p className="text-xl text-white/85 max-w-xl leading-relaxed">
-                            Spotless Florida homes, rentals, and workplaces—on time, every time. Get an instant quote and book in minutes.
+                            Florida homes, rentals, and workplaces cleaned on a clear checklist. Get an instant quote and book in minutes.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -63,7 +63,7 @@ export async function Hero() {
                                     <Star key={i} className="w-4 h-4 fill-current" />
                                 ))}
                             </div>
-                            <span>Trusted by Florida homeowners &amp; property managers</span>
+                            <span>Booked by Florida homeowners and property managers</span>
                         </div>
                     </div>
 

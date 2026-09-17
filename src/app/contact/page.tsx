@@ -6,7 +6,7 @@ import { Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Contact Us | Celebration Cleaning",
-    description: "Get in touch with Celebration Cleaning for a free quote. We are ready to make your home shine.",
+    description: "Call, text, or book online for a free quote. We clean homes, rentals, and workplaces across Florida.",
     alternates: {
         canonical: "https://celebrationcleaning.com/contact",
     },

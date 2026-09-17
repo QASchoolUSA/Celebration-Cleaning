@@ -23,10 +23,10 @@ export function ServiceAreaMap() {
                             Florida Service Areas
                         </div>
                         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
-                            Bringing Excellence to Your Neighborhood
+                            Where we clean in Florida
                         </h2>
                         <p className="text-xl text-slate-600">
-                            We proudly serve Florida's most distinguished communities. Select your city to explore exclusive cleaning services tailored for your area.
+                            Pick your city for local neighborhood notes, housing context, and services we offer nearby.
                         </p>
                     </div>
                 </div>

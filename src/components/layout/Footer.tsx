@@ -18,7 +18,7 @@ export function Footer() {
                             <span>Celebration Cleaning</span>
                         </Link>
                         <p className="text-sm text-gray-300 leading-relaxed max-w-sm">
-                            Bringing the joy of cleanliness to your home. Professional, reliable, and tailored to your needs. Serving Florida's premier cities with exceptional care. Let us celebrate your space!
+                            Residential, rental, and workplace cleaning across Florida. Clear checklists, local crews, and quotes you can book online.
                         </p>
                         <div className="flex gap-4">
                             <Link href="#" className="text-gray-400 hover:text-secondary transition-colors">

@@ -31,13 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: `Professional Cleaning Services in ${city.name}, FL`,
+        title: `Cleaning services in ${city.name}, FL`,
         description: city.description,
         alternates: {
             canonical: `https://celebrationcleaning.com/cleaning-services/${city.slug}`,
         },
         openGraph: {
-            title: `Professional Cleaning Services in ${city.name}, FL`,
+            title: `Cleaning services in ${city.name}, FL`,
             description: city.description,
             url: `https://celebrationcleaning.com/cleaning-services/${city.slug}`,
             siteName: "Celebration Cleaning",
@@ -126,7 +126,7 @@ export default async function CityPage({ params }: Props) {
                         <span>Serving {city.region}</span>
                     </div>
                     <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
-                        Professional Cleaning in {city.name}, FL
+                        Cleaning services in {city.name}, FL
                     </h1>
                     <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-8">{city.description}</p>
                 </div>
@@ -136,10 +136,10 @@ export default async function CityPage({ params }: Props) {
                 <div className="container relative z-10 mx-auto px-4 md:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                            Specialized Services in {city.name}
+                            Services in {city.name}
                         </h2>
                         <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-                            Select a service to view specialized information and request a quote.
+                            Choose a service for local details and a quote.
                         </p>
                     </div>
 
