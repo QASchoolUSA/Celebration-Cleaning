@@ -8,8 +8,15 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 const SITE_URL = "https://celebrationcleaning.com";
 const PHONE_DISPLAY = "689-388-2588";
 const PHONE_E164 = "+16893882588";
-const SERVICE_AREA_POLICY =
-    "Celebration Cleaning is a mobile, service-area business serving Miami, Orlando, Tampa, and cities across Florida. We do not publish a public storefront address.";
+const SERVICE_AREA_POLICY_PREFIX =
+    "Celebration Cleaning is a mobile, service-area business serving";
+const SERVICE_AREA_POLICY_SUFFIX =
+    ", and cities across Florida. We do not publish a public storefront address.";
+const HUB_CITIES = [
+    { name: "Miami", slug: "miami" },
+    { name: "Orlando", slug: "orlando" },
+    { name: "Tampa", slug: "tampa" },
+] as const;
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -66,7 +73,7 @@ export default function AboutPage() {
         name: "Celebration Cleaning",
         url: SITE_URL,
         telephone: PHONE_E164,
-        description: SERVICE_AREA_POLICY,
+        description: `${SERVICE_AREA_POLICY_PREFIX} Miami, Orlando, Tampa${SERVICE_AREA_POLICY_SUFFIX}`,
         address: {
             "@type": "PostalAddress",
             addressRegion: "FL",
@@ -158,14 +165,40 @@ export default function AboutPage() {
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
                         <h2 className="text-3xl font-bold tracking-tight text-foreground">Service-area policy</h2>
-                        <p>{SERVICE_AREA_POLICY}</p>
+                        <p>
+                            {SERVICE_AREA_POLICY_PREFIX}{" "}
+                            {HUB_CITIES.map((city, index) => (
+                                <span key={city.slug}>
+                                    {index > 0 ? (index === HUB_CITIES.length - 1 ? ", and " : ", ") : null}
+                                    <Link
+                                        href={`/cleaning-services/${city.slug}`}
+                                        className="text-primary font-medium hover:underline"
+                                    >
+                                        {city.name}
+                                    </Link>
+                                </span>
+                            ))}
+                            {SERVICE_AREA_POLICY_SUFFIX}
+                        </p>
                         <p>
                             We schedule across Florida&apos;s major metros and surrounding communities—
-                            including {cities.slice(0, 6).map((c) => c.name).join(", ")}, and more. Browse{" "}
+                            including{" "}
+                            {cities.map((city, index) => (
+                                <span key={city.slug}>
+                                    {index > 0 ? (index === cities.length - 1 ? ", and " : ", ") : null}
+                                    <Link
+                                        href={`/cleaning-services/${city.slug}`}
+                                        className="text-primary font-medium hover:underline"
+                                    >
+                                        {city.name}
+                                    </Link>
+                                </span>
+                            ))}
+                            . Browse{" "}
                             <Link href="/services" className="text-primary font-medium hover:underline">
                                 services
                             </Link>{" "}
-                            or a city page under cleaning services to see coverage near you. Call or text{" "}
+                            or a city hub under cleaning services to see coverage near you. Call or text{" "}
                             <a href={`tel:${PHONE_E164}`} className="text-primary font-medium hover:underline">
                                 {PHONE_DISPLAY}
                             </a>{" "}
