@@ -1,7 +1,9 @@
 
 import { Metadata } from "next";
+import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { cities } from "@/data/seo-data";
 import { Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -59,6 +61,26 @@ export default function ContactPage() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <h3 className="font-semibold">Florida coverage</h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    We clean homes, rentals, and workplaces across Florida. Open your city hub for local
+                                    details, then book from this page.
+                                </p>
+                                <ul className="flex flex-wrap gap-x-3 gap-y-2 text-sm">
+                                    {cities.map((city) => (
+                                        <li key={city.slug}>
+                                            <Link
+                                                href={`/cleaning-services/${city.slug}`}
+                                                className="text-primary font-medium hover:underline"
+                                            >
+                                                {city.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
 
                             {/* Real Interactive Map */}

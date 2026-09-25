@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
-import { services } from "@/data/seo-data";
+import { cities, services } from "@/data/seo-data";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { fromPriceLabel, headlineFor, type PricingConfig } from "@/lib/pricing";
 import { getPricingConfig } from "@/lib/pricing-config";
@@ -99,7 +99,7 @@ export default async function ServicesPage() {
                     <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
                         <h2 className="text-3xl font-bold tracking-tight">What we clean</h2>
                         <p className="text-muted-foreground text-lg">
-                            Nine service types, each with city pages across Florida.
+                            Nine service types available across Florida city hubs.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -122,16 +122,39 @@ export default async function ServicesPage() {
                                     <h3 className="text-xl font-bold">{service.name}</h3>
                                     <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
                                     <Link
-                                        href={`/cleaning-services/miami/${service.slug}`}
+                                        href="/#booking"
                                         className="inline-flex items-center text-sm font-bold text-primary"
                                     >
-                                        See Miami example
+                                        Get a quote
                                         <ArrowRight className="ml-1 h-4 w-4" />
                                     </Link>
                                 </div>
                             </article>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            <section className="py-20 bg-muted/20">
+                <div className="container mx-auto px-4 md:px-6">
+                    <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                        <h2 className="text-3xl font-bold tracking-tight">Browse by city</h2>
+                        <p className="text-muted-foreground text-lg">
+                            Open a city hub for local coverage, then book the service you need.
+                        </p>
+                    </div>
+                    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                        {cities.map((city) => (
+                            <li key={city.slug}>
+                                <Link
+                                    href={`/cleaning-services/${city.slug}`}
+                                    className="block rounded-lg border bg-background px-4 py-3 text-sm font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
+                                >
+                                    {city.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </section>
 

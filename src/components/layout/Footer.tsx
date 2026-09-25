@@ -4,9 +4,6 @@ import { Sparkles, Facebook, Instagram, Twitter, Phone } from "lucide-react";
 import { cities } from "@/data/seo-data";
 
 export function Footer() {
-    // Take exactly 5 top cities for the footer to avoid cluttering it
-    const topCities = cities.slice(0, 5);
-
     return (
         <footer className="bg-foreground text-background border-t border-white/10">
             <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
@@ -58,12 +55,12 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Locations We Serve */}
+                    {/* Locations We Serve — all city hubs for crawl discovery */}
                     <div>
                         <h3 className="font-semibold mb-4 text-white">Service Areas</h3>
-                        <ul className="space-y-2 text-sm">
-                            {topCities.map(city => (
-                                <li key={city.slug}>
+                        <ul className="columns-2 gap-x-4 space-y-2 text-sm">
+                            {cities.map((city) => (
+                                <li key={city.slug} className="break-inside-avoid">
                                     <Link href={`/cleaning-services/${city.slug}`} className="text-gray-300 hover:text-secondary transition-colors">
                                         {city.name}
                                     </Link>
