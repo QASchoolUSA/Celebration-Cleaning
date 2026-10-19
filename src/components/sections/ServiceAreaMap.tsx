@@ -27,6 +27,15 @@ export function ServiceAreaMap() {
                         </h2>
                         <p className="text-xl text-slate-600">
                             Pick your city for local neighborhood notes, housing context, and services we offer nearby.
+                            Prefer a service overview first? See{" "}
+                            <Link href="/services" className="text-primary font-medium hover:underline">
+                                all services
+                            </Link>{" "}
+                            or{" "}
+                            <Link href="/about" className="text-primary font-medium hover:underline">
+                                about us
+                            </Link>
+                            .
                         </p>
                     </div>
                 </div>

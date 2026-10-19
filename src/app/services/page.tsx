@@ -91,6 +91,36 @@ export default async function ServicesPage() {
                     <p className="text-xl text-white/85 max-w-2xl mx-auto">
                         House cleans, turnovers, move-outs, offices, and restaurants—scoped clearly so you know what you&apos;re booking.
                     </p>
+                    <p className="text-sm text-white/75 max-w-xl mx-auto">
+                        Learn{" "}
+                        <Link href="/about" className="underline underline-offset-2 hover:text-white">
+                            how we work
+                        </Link>
+                        , open a city hub below, or{" "}
+                        <Link href="/contact" className="underline underline-offset-2 hover:text-white">
+                            request a quote
+                        </Link>
+                        .
+                    </p>
+                </div>
+            </section>
+
+            <section className="py-12 bg-background border-b">
+                <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center space-y-4 text-muted-foreground leading-relaxed">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                        Why scopes stay separate
+                    </h2>
+                    <p>
+                        A weekly house clean is not a same-day Airbnb turnover, and a move-out is not a light tidy.
+                        Celebration Cleaning keeps nine distinct service types so Florida homeowners, hosts, and
+                        managers book the checklist that matches the property—not a vague &quot;full clean&quot; that
+                        means something different every visit. Pick a service below, then choose your city hub for
+                        neighborhood notes, or go straight to{" "}
+                        <Link href="/contact" className="text-primary font-medium hover:underline">
+                            contact
+                        </Link>{" "}
+                        to book.
+                    </p>
                 </div>
             </section>
 
@@ -99,7 +129,14 @@ export default async function ServicesPage() {
                     <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
                         <h2 className="text-3xl font-bold tracking-tight">What we clean</h2>
                         <p className="text-muted-foreground text-lg">
-                            Nine service types available across Florida city hubs.
+                            Nine service types available across Florida city hubs. Hosts can also review our{" "}
+                            <Link
+                                href="/guides/airbnb-turnover-checklist-florida"
+                                className="text-primary font-medium hover:underline"
+                            >
+                                Airbnb turnover checklist
+                            </Link>
+                            .
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

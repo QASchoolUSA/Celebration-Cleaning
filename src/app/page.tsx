@@ -1,7 +1,7 @@
-
 import { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { SiteHubLinks } from "@/components/sections/SiteHubLinks";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { ServiceAreaMap } from "@/components/sections/ServiceAreaMap";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -24,6 +24,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Hero />
       <Services />
+      <SiteHubLinks />
       <WhyChooseUs />
       <ServiceAreaMap />
       <Testimonials />

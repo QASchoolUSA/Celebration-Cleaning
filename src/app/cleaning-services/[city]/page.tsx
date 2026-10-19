@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { cities, services } from "@/data/seo-data";
+import { cities, relatedCitiesFor, services } from "@/data/seo-data";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
@@ -56,6 +56,7 @@ export default async function CityPage({ params }: Props) {
         notFound();
     }
 
+    const nearby = relatedCitiesFor(city);
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -123,12 +124,29 @@ export default async function CityPage({ params }: Props) {
                 <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
                     <div className="inline-flex justify-center items-center gap-2 text-sm font-semibold text-secondary mb-6">
                         <MapPin className="h-4 w-4" />
-                        <span>Serving {city.region}</span>
+                        <span>
+                            Serving {city.region} · {city.county} County
+                        </span>
                     </div>
                     <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
                         Cleaning services in {city.name}, FL
                     </h1>
                     <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-8">{city.description}</p>
+                    <p className="text-sm text-white/75">
+                        Browse{" "}
+                        <Link href="/services" className="underline underline-offset-2 hover:text-white">
+                            all services
+                        </Link>
+                        ,{" "}
+                        <Link href="/about" className="underline underline-offset-2 hover:text-white">
+                            about us
+                        </Link>
+                        , or{" "}
+                        <Link href="/contact" className="underline underline-offset-2 hover:text-white">
+                            contact
+                        </Link>{" "}
+                        to book.
+                    </p>
                 </div>
             </section>
 
@@ -136,10 +154,14 @@ export default async function CityPage({ params }: Props) {
                 <div className="container relative z-10 mx-auto px-4 md:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                            Services in {city.name}
+                            Services available in {city.name}
                         </h2>
                         <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-                            Choose a service for local details and a quote.
+                            Each service type below is described on our{" "}
+                            <Link href="/services" className="text-primary font-medium hover:underline">
+                                services hub
+                            </Link>
+                            . Request a quote for {city.name} from this page when you are ready.
                         </p>
                     </div>
 
@@ -147,7 +169,7 @@ export default async function CityPage({ params }: Props) {
                         {services.map((service) => (
                             <Link
                                 key={service.slug}
-                                href={`/cleaning-services/${city.slug}/${service.slug}`}
+                                href={`/services#${service.slug}`}
                                 className="group relative block overflow-hidden rounded-3xl border border-slate-100 shadow-lg shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 bg-white"
                             >
                                 <div className="relative h-44">
@@ -165,7 +187,9 @@ export default async function CityPage({ params }: Props) {
                                     </h3>
                                     <p className="text-slate-600 mb-6 line-clamp-2 text-sm">{service.description}</p>
                                     <div className="flex justify-between items-center pt-4 border-t border-slate-100">
-                                        <span className="text-sm font-bold text-slate-900">View Details</span>
+                                        <span className="text-sm font-bold text-slate-900">
+                                            View on services hub
+                                        </span>
                                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                                             <ArrowRight className="h-4 w-4" />
                                         </div>
@@ -190,11 +214,26 @@ export default async function CityPage({ params }: Props) {
                             <p className="text-lg leading-relaxed text-slate-700">
                                 {city.housingContext}
                             </p>
+                            <p className="mt-5 leading-relaxed text-slate-600">{city.localDetail}</p>
                             <p className="mt-5 leading-relaxed text-slate-600">
                                 We serve residents in and around {city.neighborhoods.join(", ")}. Exact availability
                                 depends on the property address and schedule, so include building, gate, parking, pet,
                                 and surface-care notes when requesting a quote. That information helps match the visit
                                 to the home instead of relying on a generic checklist.
+                            </p>
+                            <p className="mt-5 leading-relaxed text-slate-600">
+                                Hosting short-term guests in {city.name}? Read our{" "}
+                                <Link
+                                    href="/guides/airbnb-turnover-checklist-florida"
+                                    className="text-primary font-medium hover:underline"
+                                >
+                                    Florida Airbnb turnover checklist
+                                </Link>{" "}
+                                , then book a turnover or recurring clean from{" "}
+                                <Link href="/contact" className="text-primary font-medium hover:underline">
+                                    contact
+                                </Link>
+                                .
                             </p>
                         </div>
                         <aside className="rounded-3xl bg-white border border-slate-200 p-7 shadow-sm">
@@ -223,6 +262,30 @@ export default async function CityPage({ params }: Props) {
                             ))}
                         </div>
                     </div>
+
+                    {nearby.length > 0 ? (
+                        <div className="mt-16">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                                Nearby {city.region} cities we serve
+                            </h2>
+                            <p className="text-slate-600 mb-6 max-w-2xl">
+                                Same regional crews and checklists—open another hub if you manage properties across
+                                multiple cities.
+                            </p>
+                            <ul className="flex flex-wrap gap-3">
+                                {nearby.map((nearbyCity) => (
+                                    <li key={nearbyCity.slug}>
+                                        <Link
+                                            href={`/cleaning-services/${nearbyCity.slug}`}
+                                            className="inline-flex rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:border-primary hover:text-primary transition-colors"
+                                        >
+                                            {nearbyCity.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ) : null}
                 </div>
             </section>
 
