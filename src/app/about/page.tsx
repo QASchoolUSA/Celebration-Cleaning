@@ -208,6 +208,38 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            <section className="py-20 bg-background">
+                <div className="container mx-auto px-4 md:px-6 max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                        What we are not
+                    </h2>
+                    <p>
+                        We are not a gig marketplace that auctions your home to whoever is free. Celebration
+                        Cleaning schedules trained crews against a written checklist for the service you booked—
+                        house clean, Airbnb turnover, move-out, office, or restaurant—so scopes stay honest.
+                    </p>
+                    <p>
+                        We also do not publish a walk-in storefront. Coverage is mobile across Florida metros;
+                        start from a{" "}
+                        <Link href="/services" className="text-primary font-medium hover:underline">
+                            service description
+                        </Link>{" "}
+                        or your city hub, then quote or book on{" "}
+                        <Link href="/contact" className="text-primary font-medium hover:underline">
+                            contact
+                        </Link>
+                        . Short-term rental hosts can use our{" "}
+                        <Link
+                            href="/guides/airbnb-turnover-checklist-florida"
+                            className="text-primary font-medium hover:underline"
+                        >
+                            Florida Airbnb turnover checklist
+                        </Link>{" "}
+                        before the first booking.
+                    </p>
+                </div>
+            </section>
+
             <section className="py-20 bg-muted/30">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="text-center mb-16">
@@ -224,12 +256,18 @@ export default function AboutPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="mt-12 flex justify-center">
+                    <div className="mt-12 flex justify-center gap-4 flex-wrap">
                         <Link
                             href="/#booking"
                             className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                         >
                             Get a free quote
+                        </Link>
+                        <Link
+                            href="/services"
+                            className="inline-flex h-11 items-center justify-center rounded-md border px-8 text-sm font-medium transition-colors hover:bg-muted"
+                        >
+                            Browse services
                         </Link>
                     </div>
                 </div>

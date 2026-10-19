@@ -11,6 +11,7 @@ const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Guide", href: "/guides/airbnb-turnover-checklist-florida" },
     { name: "Contact", href: "/contact" },
 ];
 

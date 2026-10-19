@@ -28,6 +28,28 @@ export default function ContactPage() {
                 </div>
             </section>
 
+            <section className="py-12 bg-muted/30 border-b">
+                <div className="container mx-auto px-4 md:px-6 max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                        What to send for an accurate Florida quote
+                    </h2>
+                    <p>
+                        Share the city and address, service type (house, apartment, turnover, move-out, office, or
+                        restaurant), approximate square footage, bathrooms, and any access notes—gates, elevators,
+                        parking, pets, or specialty floors. That is enough for a clear estimate; you can refine the
+                        checklist after. Browse{" "}
+                        <Link href="/services" className="text-primary font-medium hover:underline">
+                            services
+                        </Link>{" "}
+                        or{" "}
+                        <Link href="/about" className="text-primary font-medium hover:underline">
+                            about Celebration Cleaning
+                        </Link>{" "}
+                        if you are still deciding which scope fits.
+                    </p>
+                </div>
+            </section>
+
             <section className="py-20 bg-background">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
